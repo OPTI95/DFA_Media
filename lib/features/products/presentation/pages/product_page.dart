@@ -22,7 +22,6 @@ class ProductPage extends StatelessWidget {
           const SliverPadding(
             padding: EdgeInsets.only(top: 15),
           ),
-          // Добавьте другие Sliver-элементы, если необходимо
           HotSales(theme: theme),
           Products(theme: theme),
         ],
@@ -55,7 +54,7 @@ class Products extends StatelessWidget {
             Container(
               height: 114,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(
                   Radius.circular(16),
                 ),
@@ -79,7 +78,7 @@ class Products extends StatelessWidget {
                     "data",
                     style: theme.textTheme.titleSmall,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   SizedBox(
                     height: 24,
                     width: 24,

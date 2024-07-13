@@ -41,7 +41,7 @@ class Products extends StatelessWidget {
                         ),
             );
           } else {
-            return const ErrorIcon();
+            return SliverToBoxAdapter(child: const ErrorIcon());
           }
         },
       ),
@@ -140,7 +140,7 @@ class ProductCard extends StatelessWidget {
               Text(
                 "${productState.products[index].price} ₽/${productState.products[index].unitText}",
                 style: theme.textTheme.titleSmall,
-              ).animate().fadeIn(), 
+              ).animate().fadeIn(),
               const Spacer(),
               SizedBox(
                 height: 24,

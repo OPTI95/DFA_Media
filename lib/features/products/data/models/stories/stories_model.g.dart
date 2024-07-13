@@ -13,7 +13,9 @@ StoriesModel _$StoriesModelFromJson(Map<String, dynamic> json) => StoriesModel(
       isBookmark: json['is_bookmark'] as bool,
       position: json['position'] as String,
       title: json['title'] as String,
-      slidesModel: SlidesModel.fromJson(json['slides'] as Map<String, dynamic>),
+      slidesModel: (json['slides'] as List<dynamic>)
+          .map((e) => SlidesModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$StoriesModelToJson(StoriesModel instance) =>

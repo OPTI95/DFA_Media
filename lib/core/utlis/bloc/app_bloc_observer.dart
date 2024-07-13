@@ -1,7 +1,7 @@
 import 'package:dfa_media/core/utlis/extension/string.dart';
+import 'package:dfa_media/core/utlis/logger/logger,dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../logger/logger,dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();

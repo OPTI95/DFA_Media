@@ -67,6 +67,7 @@ final class IHomeRepository implements HomeRepository {
     if (await _networkInfo.isConnected) {
       try {
         final remoteList = await _homeRemoteDataSources.getStories();
+
         _homeLocalDatasource.saveListStories(stories: remoteList);
         return Right(remoteList);
       } catch (error) {

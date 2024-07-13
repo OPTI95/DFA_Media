@@ -16,7 +16,7 @@ base class StoriesEntity {
   @JsonKey(name: "title")
   final String title;
   @JsonKey(name: "slides")
-  final SlidesEntity slides;
+  final List<SlidesEntity> slides;
 
   StoriesEntity(
       {required this.id,

@@ -1,7 +1,7 @@
 enum Endpoints {
-  banners(path: '/auth/send_number'),
-  products(path: '/auth/send_code'),
-  story(path: "/posts");
+  banners(path: 'banners.json'),
+  products(path: 'products.json'),
+  story(path: "story.json");
 
   final String path;
 

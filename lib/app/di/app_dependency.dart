@@ -1,7 +1,20 @@
+import 'package:dfa_media/core/platform/nerwork_info_impl.dart';
+import 'package:dfa_media/core/platform/network_info.dart';
+import 'package:dfa_media/features/products/data/datasources/local_datasources/home_local_datasources.dart';
+import 'package:dfa_media/features/products/data/datasources/local_datasources/home_local_datasources_impl.dart';
+import 'package:dfa_media/features/products/data/datasources/remote_datasources/home_remote_datasources.dart';
+import 'package:dfa_media/features/products/data/datasources/remote_datasources/home_remote_datasources_impl.dart';
+import 'package:dfa_media/features/products/data/repositories/home_repository_impl.dart';
+import 'package:dfa_media/features/products/domain/repositories/home_repository.dart';
+import 'package:dfa_media/features/products/domain/usecases/get_banners.dart';
+import 'package:dfa_media/features/products/domain/usecases/get_products.dart';
+import 'package:dfa_media/features/products/domain/usecases/get_stories.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/constants/config.dart';
 import '../../core/dependency_scope/dependency_scope.dart';
@@ -10,7 +23,15 @@ import '../runner/app_env.dart';
 
 final class AppDependency extends DependencyScope {
   late final AppEnv appEnv;
-
+  late final InternetConnectionChecker internetConnectionChecker;
+  late final SharedPreferences sharedPreferences;
+  late final NetworkInfo networkInfo;
+  late final HomeRepository homeRepository;
+  late final HomeLocalDatasource homeLocalDatasource;
+  late final HomeRemoteDataSources homeRemoteDataSources;
+  late final GetProducts getProducts;
+  late final GetBanners getBanners;
+  late final GetStories getStories;
   late final Dio dio;
 
   AppDependency({required this.appEnv});
@@ -23,6 +44,9 @@ final class AppDependency extends DependencyScope {
 
   Future<void> _initDependencies() async {
     await dotenv.load();
+    internetConnectionChecker = await create<InternetConnectionChecker>(
+        () => InternetConnectionChecker.createInstance());
+    sharedPreferences = await SharedPreferences.getInstance();
     dio = await create<Dio>(() => Dio(
           BaseOptions(
             baseUrl: Config.baseUrl,
@@ -69,5 +93,28 @@ final class AppDependency extends DependencyScope {
         ),
       );
     }
+
+    networkInfo = await create<NetworkInfo>(
+        () => INetworkInfo(internetConnectionChecker));
+
+    homeLocalDatasource = await create<HomeLocalDatasource>(
+      () => IHomeLocalDatasource(sharedPrefences: sharedPreferences),
+    );
+    homeRemoteDataSources = await create<HomeRemoteDataSources>(
+      () => IHomeRemoteDatasource(dio: dio),
+    );
+    homeRepository = await create<HomeRepository>(
+      () => IHomeRepository(
+          homeRemoteDataSources: homeRemoteDataSources,
+          homeLocalDatasource: homeLocalDatasource,
+          netWorkInfo: networkInfo),
+    );
+
+    getBanners = await create<GetBanners>(
+        () => GetBanners(homeRepository: homeRepository));
+    getProducts = await create<GetProducts>(
+        () => GetProducts(homeRepository: homeRepository));
+    getStories = await create<GetStories>(
+        () => GetStories(homeRepository: homeRepository));
   }
 }

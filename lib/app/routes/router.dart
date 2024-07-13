@@ -1,4 +1,6 @@
-import 'package:dfa_media/features/products/presentation/bloc/products_bloc.dart';
+import 'package:dfa_media/features/products/presentation/controller/banners/banners_bloc.dart';
+import 'package:dfa_media/features/products/presentation/controller/products/products_bloc.dart';
+import 'package:dfa_media/features/products/presentation/controller/story/story_bloc.dart';
 import 'package:dfa_media/features/products/presentation/pages/product_page.dart';
 import 'package:dfa_media/features/shops/presentation/pages/shops_page.dart';
 import 'package:dfa_media/features/support/presentation/pages/support_page.dart';
@@ -8,6 +10,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/delivery/presentation/pages/delivery_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../di/dependency_injection.dart';
 import 'routes.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -28,10 +31,27 @@ abstract class AppRouter {
               GoRoute(
                 path: '/home',
                 name: Routes.home,
-                builder: (context, state) => BlocProvider(
-                  create: (context) => ProductsBloc(
-                      //getPosts: DependencyInjection.of(context).getPosts,
-                      ), //..getPosts(),
+                builder: (context, state) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => ProductsBloc(
+                        getProducts:
+                            DependencyInjection.of(context).getProducts,
+                      )..add(LoadProducts()),
+                    ),
+                    BlocProvider(
+                      create: (context) => BannersBloc(
+                        getBanners:
+                            DependencyInjection.of(context).getBanners,
+                      )..add(LoadBanners()),
+                    ),
+                    BlocProvider(
+                      create: (context) => StoryBloc(
+                        getStories:
+                            DependencyInjection.of(context).getStories,
+                      )..add(LoadStory()),
+                    ),
+                  ],
                   child: const ProductPage(),
                 ),
               ),

@@ -1,12 +1,10 @@
 import 'package:dfa_media/core/utlis/extension/extension_on_context.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/values/app_string.dart';
-import '../../../../core/assets/assets.gen.dart';
+import '../../../../core/assets/gen/assets.gen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key, required StatefulNavigationShell navigationShell})
@@ -45,7 +43,9 @@ class HomePage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 2.0, right: 2),
-                    child: SvgPicture.asset(Assets.icons.bell,),
+                    child: SvgPicture.asset(
+                      Assets.icons.bell,
+                    ),
                   ),
                   Container(
                     height: 14,
@@ -57,8 +57,9 @@ class HomePage extends StatelessWidget {
                     child: Text(
                       textAlign: TextAlign.center,
                       AppString.kCountNotf,
-                      style: theme.textTheme.bodySmall!
-                          .copyWith(color: AppColors.kWhiteColor),
+                      style: theme.textTheme.bodySmall!.copyWith(
+                        color: AppColors.kWhiteColor,
+                      ),
                     ),
                   ),
                 ],

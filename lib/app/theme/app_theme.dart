@@ -1,3 +1,4 @@
+import 'package:dfa_media/core/assets/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
@@ -24,31 +25,31 @@ abstract final class AppTheme {
           color: AppColors.kWhiteColor,
           fontSize: 24,
           fontWeight: FontWeight.w500,
-          fontFamily: "Stolzl"),
+          fontFamily: Assets.fonts.stolzlMedium),
       //TitleH3
       titleMedium: TextStyle(
           color: AppColors.kWhiteColor,
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          fontFamily: "Stolzl"),
+          fontFamily: Assets.fonts.stolzlRegular),
       //TitileH4
       bodyMedium: TextStyle(
           fontWeight: FontWeight.w500,
           color: AppColors.kBlackColor,
           fontSize: 16,
-          fontFamily: "Stolzl"),
+          fontFamily: Assets.fonts.stolzlMedium),
       //LabelS
       titleSmall: TextStyle(
           fontWeight: FontWeight.w400,
           color: AppColors.kThirdColor,
           fontSize: 12,
-          fontFamily: "Stolzl"),
+          fontFamily: Assets.fonts.stolzlRegular),
       //LabelXS
       bodySmall: TextStyle(
           color: AppColors.kBlackColor,
           fontSize: 10,
           fontWeight: FontWeight.w400,
-          fontFamily: "Stolzl"),
+          fontFamily: Assets.fonts.stolzlRegular),
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: AppColors.kPrimaryColor,

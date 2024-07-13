@@ -1,4 +1,3 @@
-import 'package:dfa_media/features/products/domain/entities/banners/banners_entity.dart';
 import 'package:dfa_media/features/products/domain/entities/product/product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'products_model.g.dart';

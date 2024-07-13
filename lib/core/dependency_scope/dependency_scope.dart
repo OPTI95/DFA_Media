@@ -1,5 +1,6 @@
 
-import '../utlis/logger/logger,dart';
+
+import 'package:dfa_media/core/utlis/logger/logger,dart';
 
 abstract base class DependencyScope {
   Future<T> create<T>(T Function() init) async {

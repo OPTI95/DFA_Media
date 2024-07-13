@@ -15,15 +15,13 @@ final class IHomeRemoteDatasource implements HomeRemoteDataSources {
   Future<List<BannersModel>> getBanners() async {
     try {
       final Response response = await _dio.get(Endpoints.banners.path);
-      return List.from(
-        (response.data as List<dynamic>)
-            .map(
-              (e) => BannersModel.fromJson(e),
-            )
-            .toList(),
-      );
+      final List<dynamic> bannersList =
+          response.data['banners'] as List<dynamic>;
+      return bannersList.map((e) => BannersModel.fromJson(e)).toList();
     } on DioException catch (error) {
       throw error.response?.data;
+    } catch (error) {
+      throw Exception();
     }
   }
 
@@ -31,15 +29,13 @@ final class IHomeRemoteDatasource implements HomeRemoteDataSources {
   Future<List<ProductsModel>> getProducts() async {
     try {
       final Response response = await _dio.get(Endpoints.products.path);
-      return List.from(
-        (response.data as List<dynamic>)
-            .map(
-              (e) => ProductsModel.fromJson(e),
-            )
-            .toList(),
-      );
+      final List<dynamic> productsList =
+          response.data['products'] as List<dynamic>;
+      return productsList.map((e) => ProductsModel.fromJson(e)).toList();
     } on DioException catch (error) {
       throw error.response?.data;
+    } catch (error) {
+      throw Exception();
     }
   }
 
@@ -47,15 +43,12 @@ final class IHomeRemoteDatasource implements HomeRemoteDataSources {
   Future<List<StoriesModel>> getStories() async {
     try {
       final Response response = await _dio.get(Endpoints.story.path);
-      return List.from(
-        (response.data as List<dynamic>)
-            .map(
-              (e) => StoriesModel.fromJson(e),
-            )
-            .toList(),
-      );
+      final List<dynamic> storyList = response.data['story'] as List<dynamic>;
+      return storyList.map((e) => StoriesModel.fromJson(e)).toList();
     } on DioException catch (error) {
       throw error.response?.data;
+    } catch (error) {
+      throw Exception();
     }
   }
 }

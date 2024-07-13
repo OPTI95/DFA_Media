@@ -1,4 +1,4 @@
-import 'app/runner/app_env.dart';
-import 'app/runner/app_runner.dart';
+import 'app/boot/app_env.dart';
+import 'app/boot/app_boot.dart';
 
-void main() => AppRunner(appEnv: AppEnv.prod).run();
+void main() => AppBoot(appEnv: AppEnv.prod).run();

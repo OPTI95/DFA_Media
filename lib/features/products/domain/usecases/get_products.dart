@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dfa_media/features/products/domain/entities/product/product_entity.dart';
 import '../../../../core/error/error.dart';
-import '../../../../core/utlis/usecase/usecase.dart';
+import '../../../../core/utilities/usecase/usecase.dart';
 import '../repositories/home_repository.dart';
 
 final class GetProducts implements UseCase<List<ProductEntity>, NoParams> {

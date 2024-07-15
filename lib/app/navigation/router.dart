@@ -41,14 +41,12 @@ abstract class AppRouter {
                     ),
                     BlocProvider(
                       create: (context) => BannersBloc(
-                        getBanners:
-                            DependencyInjection.of(context).getBanners,
+                        getBanners: DependencyInjection.of(context).getBanners,
                       )..add(LoadBanners()),
                     ),
                     BlocProvider(
                       create: (context) => StoryBloc(
-                        getStories:
-                            DependencyInjection.of(context).getStories,
+                        getStories: DependencyInjection.of(context).getStories,
                       )..add(LoadStory()),
                     ),
                   ],
@@ -71,6 +69,15 @@ abstract class AppRouter {
               GoRoute(
                 name: Routes.shops,
                 path: '/shops',
+                builder: (context, state) => const ShopsPage(),
+              )
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: Routes.empty,
+                path: '/empty',
                 builder: (context, state) => const ShopsPage(),
               )
             ],

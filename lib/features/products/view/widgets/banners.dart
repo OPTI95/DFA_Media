@@ -47,6 +47,7 @@ class PageViewWithDots extends StatelessWidget {
               SizedBox(
                 height: 140,
                 child: ClipRRect(
+                  clipBehavior: Clip.hardEdge,
                   borderRadius: BorderRadius.circular(16),
                   child: PageView.builder(
                     onPageChanged: (val) => bannersBloc.add(
@@ -91,6 +92,7 @@ class BannersCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final bannersState = context.read<BannersBloc>().state;
     return CachedNetworkImage(
+      fit: BoxFit.cover,
       placeholder: (context, url) => Shimmer.fromColors(
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,
@@ -129,7 +131,7 @@ class CustomDotsIndicator extends StatelessWidget {
           height: 8.0,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: isActive ? Colors.red : Colors.grey),
+              color: isActive ? AppColors.kGreyColor : AppColors.kGreyColor.withOpacity(0.5)),
         );
       }),
     );

@@ -4,6 +4,8 @@ abstract final class Routes {
 
   static String get shops => 'shops';
 
+  static String get empty => 'empty';
+
   static String get support => "support";
 
   static String get delivery => 'delivery';

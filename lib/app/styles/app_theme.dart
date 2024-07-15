@@ -6,12 +6,17 @@ abstract final class AppTheme {
   static ThemeData get theme => _theme;
 
   static final ThemeData _theme = ThemeData(
+    highlightColor: Colors.transparent,
+    splashFactory: NoSplash.splashFactory,
+    splashColor: Colors.transparent,
     scaffoldBackgroundColor: AppColors.kPrimaryColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppColors.kWhiteColor,
         type: BottomNavigationBarType.fixed,
+    
+        selectedLabelStyle:
+            TextStyle(color: AppColors.kThirdColor, fontSize: 10, fontFamily: 'Stolzl'),
         elevation: 0,
-        selectedLabelStyle: TextStyle(color: AppColors.kThirdColor),
         showUnselectedLabels: true),
     useMaterial3: false,
     appBarTheme: AppBarTheme(
@@ -25,31 +30,31 @@ abstract final class AppTheme {
           color: AppColors.kWhiteColor,
           fontSize: 24,
           fontWeight: FontWeight.w500,
-          fontFamily: Assets.fonts.stolzlMedium),
+          fontFamily: 'Stolzl'),
       //TitleH3
       titleMedium: TextStyle(
           color: AppColors.kWhiteColor,
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          fontFamily: Assets.fonts.stolzlRegular),
+          fontFamily:'Stolzl'),
       //TitileH4
       bodyMedium: TextStyle(
           fontWeight: FontWeight.w500,
           color: AppColors.kBlackColor,
           fontSize: 16,
-          fontFamily: Assets.fonts.stolzlMedium),
+          fontFamily: 'Stolzl'),
       //LabelS
       titleSmall: TextStyle(
           fontWeight: FontWeight.w400,
           color: AppColors.kThirdColor,
           fontSize: 12,
-          fontFamily: Assets.fonts.stolzlRegular),
+          fontFamily: 'Stolzl'),
       //LabelXS
       bodySmall: TextStyle(
           color: AppColors.kBlackColor,
           fontSize: 10,
           fontWeight: FontWeight.w400,
-          fontFamily: Assets.fonts.stolzlRegular),
+          fontFamily: 'Stolzl'),
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: AppColors.kPrimaryColor,

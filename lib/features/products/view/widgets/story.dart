@@ -74,20 +74,28 @@ class StoryCard extends StatelessWidget {
                 height: 64,
                 width: 64,
                 clipBehavior: Clip.hardEdge,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                child: CachedNetworkImage(
-                  imageUrl: storyState.storyes[index].previewImage,
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Container(
-                      height: 100,
-                      width: double.infinity,
-                      color: Colors.white,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: storyState.storyes[index].viewed
+                        ? Border.all(width: 1, color: AppColors.kGreyColor)
+                        : null),
+                child: Padding(
+                  padding: const EdgeInsets.all(1.5),
+                  child: CachedNetworkImage(
+                    imageUrl: storyState.storyes[index].previewImage,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
+                        height: 100,
+                        width: double.infinity,
+                        color: Colors.white,
+                      ),
                     ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    fit: BoxFit.cover,
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  fit: BoxFit.cover,
                 ),
               ).animate().scaleXY(),
               const SizedBox(

@@ -71,65 +71,88 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         useLegacyColorScheme: false,
         currentIndex: _navigationShell.currentIndex,
+        selectedFontSize: 10,
+        unselectedFontSize: 10,
         onTap: (value) {
-          _navigationShell.goBranch(value, initialLocation: true);
+          value == 2
+              ? null
+              : _navigationShell.goBranch(value, initialLocation: true);
         },
         items: [
           BottomNavigationBarItem(
-            icon: SizedBox(
-              child: SvgPicture.asset(
-                Assets.icons.home,
-                height: 30,
-                colorFilter: ColorFilter.mode(
-                  _navigationShell.currentIndex == 0
-                      ? AppColors.kThirdColor
-                      : AppColors.kBlackColor,
-                  BlendMode.srcIn,
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: SizedBox(
+                child: SvgPicture.asset(
+                  Assets.icons.home,
+                  height: 24,
+                  width: 24,
+                  colorFilter: ColorFilter.mode(
+                    _navigationShell.currentIndex == 0
+                        ? AppColors.kThirdColor
+                        : AppColors.kBlackColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
             label: AppString.kHome,
           ),
           BottomNavigationBarItem(
-            icon: SizedBox(
-              child: SvgPicture.asset(
-                height: 30,
-                Assets.icons.bag,
-                colorFilter: ColorFilter.mode(
-                  _navigationShell.currentIndex == 1
-                      ? AppColors.kThirdColor
-                      : AppColors.kBlackColor,
-                  BlendMode.srcIn,
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: SizedBox(
+                child: SvgPicture.asset(
+                  height: 24,
+                  width: 24,
+                  Assets.icons.bag,
+                  colorFilter: ColorFilter.mode(
+                    _navigationShell.currentIndex == 1
+                        ? AppColors.kThirdColor
+                        : AppColors.kBlackColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
             label: AppString.kDelivery,
           ),
+          const BottomNavigationBarItem(icon: SizedBox(width: 50), label: ""),
           BottomNavigationBarItem(
-            icon: SizedBox(
-              child: SvgPicture.asset(
-                height: 30,
-                Assets.icons.shop,
-                colorFilter: ColorFilter.mode(
-                  _navigationShell.currentIndex == 2
-                      ? AppColors.kThirdColor
-                      : AppColors.kBlackColor,
-                  BlendMode.srcIn,
+            icon: Padding(
+              padding: const EdgeInsets.only(
+                bottom: 4.0,
+              ),
+              child: SizedBox(
+                child: SvgPicture.asset(
+                  height: 24,
+                  width: 24,
+                  Assets.icons.shop,
+                  colorFilter: ColorFilter.mode(
+                    _navigationShell.currentIndex == 3
+                        ? AppColors.kThirdColor
+                        : AppColors.kBlackColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
             label: AppString.kShops,
           ),
           BottomNavigationBarItem(
-            icon: SizedBox(
-              child: SvgPicture.asset(
-                height: 30,
-                Assets.icons.message,
-                colorFilter: ColorFilter.mode(
-                  _navigationShell.currentIndex == 3
-                      ? AppColors.kThirdColor
-                      : AppColors.kBlackColor,
-                  BlendMode.srcIn,
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: SizedBox(
+                child: SvgPicture.asset(
+                  height: 24,
+                  width: 24,
+                  Assets.icons.message,
+                  colorFilter: ColorFilter.mode(
+                    _navigationShell.currentIndex == 4
+                        ? AppColors.kThirdColor
+                        : AppColors.kBlackColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),

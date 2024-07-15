@@ -27,7 +27,7 @@ class Products extends StatelessWidget {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 5,
-                crossAxisSpacing: 20,
+                crossAxisSpacing: 10,
                 mainAxisExtent: 200,
               ),
               itemCount: state.status == ProductStatus.loading
@@ -105,12 +105,14 @@ class ProductCard extends StatelessWidget {
         Container(
           height: 114,
           width: double.infinity,
+          clipBehavior: Clip.hardEdge,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(
               Radius.circular(16),
             ),
           ),
           child: CachedNetworkImage(
+            fit: BoxFit.cover,
             imageUrl: productState.products[index].image,
             placeholder: (context, url) => Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
@@ -137,10 +139,22 @@ class ProductCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           child: Row(
             children: [
-              Text(
-                "${productState.products[index].price} ₽/${productState.products[index].unitText}",
-                style: theme.textTheme.titleSmall,
-              ).animate().fadeIn(),
+              RichText(
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: productState.products[index].price.toString(),
+                    style: theme.textTheme.titleSmall,
+                  ),
+                  TextSpan(
+                    text: ' ₽/',
+                    style: TextStyle(color: AppColors.kThirdColor, fontSize: 12),
+                  ),
+                  TextSpan(
+                    text: productState.products[index].unitText,
+                    style: theme.textTheme.titleSmall,
+                  ),
+                ]),
+              )..animate().fadeIn(),
               const Spacer(),
               SizedBox(
                 height: 24,
@@ -148,7 +162,7 @@ class ProductCard extends StatelessWidget {
                 child: InkWell(
                   onTap: () {},
                   child: Padding(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: SvgPicture.asset(
                       Assets.icons.addToCart,
                       colorFilter: ColorFilter.mode(
@@ -156,7 +170,7 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                 ),
-              ).animate().scale(), // Анимация bounceIn для иконки
+              ).animate().scale(),
             ],
           ),
         ),
